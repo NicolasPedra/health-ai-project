@@ -6,4 +6,4 @@ app = Flask(__name__, template_folder="templates")
 def index():
     return render_template("tela-consulta.html")
 
-app.run()
+app.run(debug=True)
