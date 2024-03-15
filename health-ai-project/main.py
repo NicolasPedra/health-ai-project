@@ -1,4 +1,9 @@
-def teste(teste: str):
-    print(teste)
+from flask import Flask, render_template
 
-teste("teste")
+app = Flask(__name__, template_folder="templates")
+
+@app.route("/")
+def index():
+    return render_template("tela-consulta.html")
+
+app.run()
