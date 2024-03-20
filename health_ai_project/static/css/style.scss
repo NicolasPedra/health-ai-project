@@ -1,0 +1,8 @@
+div[id^="matplotlib"][id$="message"],
+.matplotlib-toolbar-button {
+    display: none;
+ }
+
+canvas {
+   margin-bottom: 4rem;
+ }
