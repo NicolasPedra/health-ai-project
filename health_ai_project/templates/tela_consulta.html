@@ -47,11 +47,11 @@
             <div class="d-block my-3">
               <label for="firstName">Histórico familiar</label>
               <div class="custom-control custom-radio">
-                <input id="historico-sim" name="historico" type="radio" class="custom-control-input" checked="" required="">
+                <input id="historico-sim" name="historico" type="radio" class="custom-control-input" checked="" required="" value="true">
                 <label class="custom-control-label" for="credit">Sim</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="historico-nao" name="historico" type="radio" class="custom-control-input" required="">
+                <input id="historico-nao" name="historico" type="radio" class="custom-control-input" required="" value="false">
                 <label class="custom-control-label" for="debit">Não</label>
               </div>
             </div>
@@ -63,11 +63,11 @@
             <div class="d-block my-3">
               <label for="firstName">Nódulo palpável</label>
               <div class="custom-control custom-radio">
-                <input id="nodulo-palpavel-sim" name="nodulo-palpavel" type="radio" class="custom-control-input" checked="" required="">
+                <input id="nodulo-palpavel-sim" name="nodulo-palpavel" type="radio" class="custom-control-input" checked="" required="" value="true">
                 <label class="custom-control-label" for="credit">Sim</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="nodulo-palpavel-nao" name="nodulo-palpavel" type="radio" class="custom-control-input" required="">
+                <input id="nodulo-palpavel-nao" name="nodulo-palpavel" type="radio" class="custom-control-input" required="" value="false">
                 <label class="custom-control-label" for="debit">Não</label>
               </div>
             </div>
@@ -78,7 +78,7 @@
 
             <div class="col-md-6 mb-3">
               <label for="firstName">Tamanho do nódulo</label>
-              <input type="number" class="form-control" id="firstName" placeholder=""  value="" required="">
+              <input type="number" class="form-control" id="tamanho-nodulo" placeholder=""  value="" required="">
               <div class="invalid-feedback">
                 Campo obrigatório.
               </div>
@@ -93,11 +93,9 @@
               <label for="bi-rads-usg">BI-RADS USG</label>
               <select class="form-select d-block w-100" id="bi-rads-usg" required="">
                 <option value="">Selecione</option>
-                <option>BI-RADS 3</option>
-                <option>BI-RADS 4a</option>
-                <option>BI-RADS 4b</option>
-                <option>BI-RADS 4c</option>
-                <option>BI-RADS 5</option>
+                {% for row in BIRADS_USG %}
+                <option value="{{row.VALOR}}"> {{row.NOME}} </option>
+                {% endfor %} 
               </select>
               <div class="invalid-feedback">
                 Campo obrigatório.
@@ -113,12 +111,9 @@
               <label for="bi-rads-mamografia">BI-RADS Mamografia</label>
               <select class="form-select d-block w-100" id="bi-rads-mamografia" required="">
                 <option value="">Selecione</option>
-                <option>BI-RADS 0</option>
-                <option>BI-RADS 1</option>
-                <option>BI-RADS 2</option>
-                <option>BI-RADS 3</option>
-                <option>BI-RADS 4</option>
-                <option>BI-RADS 5</option>
+                {% for row in BIRADS_MAMOGRAFIA %}
+                <option value="{{row.VALOR}}"> {{row.NOME}} </option>
+                {% endfor %}
               </select>
               <div class="invalid-feedback">
                 Campo obrigatório.
@@ -135,10 +130,10 @@
   </div>
 
   <py-config>
-    packages = ["matplotlib", "pandas", "ipywidgets"]
+    packages = ["matplotlib"]
   </py-config>
   
-  <script type="py" src="./../../static/script/tela-consulta.py"></script>
+  <script type="py" src="./../../static/script/tela_consulta.py"></script>
 </body>
 
 </html>
