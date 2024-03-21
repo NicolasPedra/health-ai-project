@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 
 #=============== ÍNICIO - MÓDULOS =============#
-
 class DadosPaciente:
     idade: int
     historico_familiar: bool
@@ -27,7 +26,6 @@ class DadosPaciente:
     
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")
-
 #=============== FIM - MÓDULOS =============#
 
 

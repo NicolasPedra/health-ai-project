@@ -91,7 +91,7 @@
             <div class="col-md-5 mb-3">
 
               <label for="bi-rads-usg">BI-RADS USG</label>
-              <select class="form-select d-block w-100" id="bi-rads-usg" required="">
+              <select class="form-select d-block w-100" id="bi-rads-usg">
                 <option value="">Selecione</option>
                 {% for row in BIRADS_USG %}
                 <option value="{{row.VALOR}}"> {{row.NOME}} </option>
@@ -109,7 +109,7 @@
             <div class="col-md-5 mb-3">
 
               <label for="bi-rads-mamografia">BI-RADS Mamografia</label>
-              <select class="form-select d-block w-100" id="bi-rads-mamografia" required="">
+              <select class="form-select d-block w-100" id="bi-rads-mamografia">
                 <option value="">Selecione</option>
                 {% for row in BIRADS_MAMOGRAFIA %}
                 <option value="{{row.VALOR}}"> {{row.NOME}} </option>
