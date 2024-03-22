@@ -65,4 +65,3 @@ def exibirGraficos(valores: list[int]):
     f2 = plt.figure(2, figsize=(10, 4.7), layout='constrained')
     plt.pie(valores, labels=categories, autopct='%1.1f%%', colors=colors)
     plt.show()
-
