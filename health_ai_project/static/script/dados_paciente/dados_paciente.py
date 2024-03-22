@@ -29,7 +29,7 @@ def str2bool(v):
 #=============== FIM - MÓDULOS =============#
 
 
-def submit(event):
+def consultar(event):
     # form = document.getElementById("form")
 
     # if (form.checkValidity() == False):
@@ -42,6 +42,9 @@ def submit(event):
     print(dados_paciente.__array__())
 
     exibirGraficos([15, 10, 25, 20, 10, 20])
+
+def voltar(event):
+    navegar('form', '/', 'GET')
 
 def obterDadosPaciente() -> DadosPaciente:
     idade = document.getElementById("idade").value
@@ -65,3 +68,9 @@ def exibirGraficos(valores: list[int]):
     f2 = plt.figure(2, figsize=(10, 4.7), layout='constrained')
     plt.pie(valores, labels=categories, autopct='%1.1f%%', colors=colors)
     plt.show()
+
+def navegar(id_form, rota, metodo):
+    form = document.getElementById(id_form)
+    form.action = rota
+    form.method = metodo
+    form.submit()

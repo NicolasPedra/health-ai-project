@@ -17,11 +17,11 @@
     </div>
 
     <div class="row"> 
-      <div class="col-md-8 order-md-1">
-        <form id="form" class="needs-validation" novalidate="" onsubmit="return false">
+      <div class="order-md-1">
+        <form id="form" class="needs-validation" novalidate="">
           <div class="row">
 
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
               <label for="prontuario">Prontuário</label>
               <label> {{paciente.prontuario}} </label>
             </div>
@@ -30,7 +30,7 @@
 
           <div class="row">
 
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
               <label for="idade">Idade</label>
               <input type="number" class="form-control" id="idade" placeholder="" value="{{paciente.idade}}" required="">
               <div class="invalid-feedback">
@@ -74,7 +74,7 @@
 
           <div class="row">
 
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
               <label for="firstName">Tamanho do nódulo</label>
               <input type="number" class="form-control" id="tamanho-nodulo" placeholder=""  value="{{paciente.tamanho_nodulo}}" required="">
               <div class="invalid-feedback">
@@ -86,7 +86,7 @@
 
           <div class="row">
 
-            <div class="col-md-5 mb-3">
+            <div class="col-md-3 mb-3">
 
               <label for="bi-rads-usg">BI-RADS USG</label>
               <select class="form-select d-block w-100" id="bi-rads-usg" selecionado="{{paciente.birads_usg}}">
@@ -104,7 +104,7 @@
 
           <div class="row">
 
-            <div class="col-md-5 mb-3">
+            <div class="col-md-3 mb-3">
 
               <label for="bi-rads-mamografia">BI-RADS Mamografia</label>
               <select class="form-select d-block w-100" id="bi-rads-mamografia" selecionado="{{paciente.birads_mamografia}}">
@@ -121,7 +121,15 @@
           </div>
  
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit" py-click="submit">Consultar</button>
+          <div>
+            <div class="inline">
+              <button class="btn btn-secondary btn-lg btn-block" type="button" py-click="voltar">Voltar</button>
+            </div>
+            
+            <div class="inline right">
+              <button class="btn btn-primary btn-lg btn-block pull-right" type="button" py-click="consultar">Consultar</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
