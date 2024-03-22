@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template, request
 from static.constantes.select_option.SELECT_OPTION import BIRADS_USG, BIRADS_MAMOGRAFIA
 from data_base.paciente.paciente_db import PacienteDB

@@ -1,9 +1,12 @@
 
+import json
+
+
 class DadosPaciente:
     prontuario: str
     idade: int
-    historico_familiar: bool
-    nodulo_palpavel: bool
+    historico_familiar: int
+    nodulo_palpavel: int
     tamanho_nodulo: float
     birads_usg: int
     birads_mamografia: int
@@ -20,3 +23,7 @@ class DadosPaciente:
     def __array__(self) -> list:
         return [self.idade, self.historico_familiar, self.nodulo_palpavel, 
                 self.tamanho_nodulo, self.birads_usg, self.birads_mamografia]
+    
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)

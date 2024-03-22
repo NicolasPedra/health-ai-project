@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 #=============== ÍNICIO - MÓDULOS =============#
 class DadosPaciente:
     idade: int
-    historico_familiar: bool
-    nodulo_palpavel: bool
+    historico_familiar: int
+    nodulo_palpavel: int
     tamanho_nodulo: float
     birads_usg: int
     birads_mamografia: int
@@ -26,6 +26,12 @@ class DadosPaciente:
     
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")
+
+def intNull(valor):
+    try:
+        return int(valor)
+    except ValueError:
+        return None
 #=============== FIM - MÓDULOS =============#
 
 
@@ -38,21 +44,24 @@ def consultar(event):
 
     # form.classList.add('was-validated')
 
-    dados_paciente = obterDadosPaciente()
-    print(dados_paciente.__array__())
+    dados_paciente_tela = obterDadosPacienteTela()
+    dados_paciente_db = json.loads(document.getElementById("dados_paciente_db").textContent)
+
+    alterado = verificarAlteracaoPaciente(dados_paciente_db, dados_paciente_tela)
+    print(dados_paciente_tela.__array__())
 
     exibirGraficos([15, 10, 25, 20, 10, 20])
 
 def voltar(event):
     navegar('form', '/', 'GET')
 
-def obterDadosPaciente() -> DadosPaciente:
-    idade = document.getElementById("idade").value
-    historico = str2bool(document.getElementsByName("historico")[0].value)
-    nodulo_palpavel = str2bool(document.getElementsByName("nodulo-palpavel")[0].value)
-    tamanho_nodulo = document.getElementById("tamanho-nodulo").value
-    birads_usg = document.getElementById("bi-rads-usg").value
-    birads_mamografia = document.getElementById("bi-rads-mamografia").value
+def obterDadosPacienteTela() -> DadosPaciente:
+    idade = int(document.getElementById("idade").value)
+    historico = int(document.querySelector('input[name="historico"]:checked').value)
+    nodulo_palpavel = int(document.querySelector('input[name="nodulo-palpavel"]:checked').value)
+    tamanho_nodulo = float(document.getElementById("tamanho-nodulo").value)
+    birads_usg = intNull(document.getElementById("bi-rads-usg").value)
+    birads_mamografia = intNull(document.getElementById("bi-rads-mamografia").value)
  
     return DadosPaciente(idade, historico, nodulo_palpavel, tamanho_nodulo, birads_usg, birads_mamografia)
 
@@ -68,6 +77,16 @@ def exibirGraficos(valores: list[int]):
     f2 = plt.figure(2, figsize=(10, 4.7), layout='constrained')
     plt.pie(valores, labels=categories, autopct='%1.1f%%', colors=colors)
     plt.show()
+
+def verificarAlteracaoPaciente(dados_paciente_db, dados_paciente_tela: DadosPaciente) -> bool:
+    for attr, valor in dados_paciente_tela.__dict__.items():
+        if (str(dados_paciente_db[attr]) != str(valor)):
+            print(attr)
+            print(dados_paciente_db[attr])
+            print(valor)
+            return False
+    
+    return True
 
 def navegar(id_form, rota, metodo):
     form = document.getElementById(id_form)

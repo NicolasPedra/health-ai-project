@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <label id="dados_paciente_db" hidden>{{paciente.toJSON()}}</label>
   <div class="container">
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -90,7 +91,7 @@
 
               <label for="bi-rads-usg">BI-RADS USG</label>
               <select class="form-select d-block w-100" id="bi-rads-usg" selecionado="{{paciente.birads_usg}}">
-                <option value="">Selecione</option>
+                <option value="{{null}}">Selecione</option>
                 {% for row in BIRADS_USG %}
                 <option value="{{row.VALOR}}"> {{row.NOME}} </option>
                 {% endfor %} 
@@ -108,7 +109,7 @@
 
               <label for="bi-rads-mamografia">BI-RADS Mamografia</label>
               <select class="form-select d-block w-100" id="bi-rads-mamografia" selecionado="{{paciente.birads_mamografia}}">
-                <option value="">Selecione</option>
+                <option value="{{null}}">Selecione</option>
                 {% for row in BIRADS_MAMOGRAFIA %}
                 <option value="{{row.VALOR}}"> {{row.NOME}} </option>
                 {% endfor %}
