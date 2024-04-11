@@ -9,20 +9,20 @@
   <script src="./../../static/script/utils/utils.js"></script>
 </head>
 
-<body>
+<body> 
   <label id="dados_paciente_db" hidden>{{paciente.toJSON()}}</label>
   <div class="container">
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h2>Dados do paciente</h2>
     </div>
 
     <div class="row"> 
       <div class="order-md-1">
-        <form id="form" class="needs-validation" novalidate="">
+        <form id="form" class="needs-validation" novalidate="" method="post">
           <div class="row">
 
             <div class="col-md-3 mb-3">
+              <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="" value="{{paciente.prontuario}}" hidden required="">
               <label for="prontuario">Prontuário</label>
               <label> {{paciente.prontuario}} </label>
             </div>
@@ -128,7 +128,7 @@
             </div>
             
             <div class="inline right">
-              <button class="btn btn-primary btn-lg btn-block pull-right" type="button" py-click="consultar">Consultar</button>
+              <button class="btn btn-primary btn-lg btn-block pull-right" type="submit" py-click="submit">Consultar</button>
             </div>
           </div>
         </form>

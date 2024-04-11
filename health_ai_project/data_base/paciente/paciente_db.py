@@ -1,14 +1,5 @@
 from data_base.paciente.paciente_ob import DadosPaciente
 import sqlite3
-import pandas as pd
-
-# ('132435465', 31, 1, 1, 11.2, 0, 0)
-# ('243546576', 44, 0, 1, 1.2, None, 1)
-# ('354657687', 75, 1, 0, 2.2, None, None)
-# ('465768798', 63, 0, 1, 9.1, 2, 3)
-# ('576879809', 22, 1, 0, 7.0, 4, None)
-# ('687980921', 37, 0, 1, 6.4, 3, 5)
-# ('775566334', 55, 1, 1, 2.4, 1, 2)
 
 class PacienteDB():
 
@@ -16,12 +7,13 @@ class PacienteDB():
     cursor: sqlite3.Cursor
 
     def __init__(self):
-        self.criar_base()
+        self.conectar()
         self.criar_tabela_paciente()
+        # self.limpar_tabela()
         # self.inserir_dados_tabela_paciente()
         # self.listar_todos()
    
-    def criar_base(self):
+    def conectar(self):
         self.connection = sqlite3.connect('test_database') 
         self.cursor = self.connection.cursor()
 
@@ -47,7 +39,10 @@ class PacienteDB():
         try:
             self.cursor.execute('''
             INSERT INTO DADOS_PACIENTE VALUES 
-                ("775566334", 55, 1, 1, 2.4, 1, 2)
+                ("132435465", 53, 0, 1, 24, 5,  5),
+                ("243546576", 48, 0, 0, 13, 41, 4),
+                ("354657687", 50, 1, 1, 80, 43, 4),
+                ("465768798", 43, 1, 1, 33, 41, 4)
             ''')
          
             self.connection.commit()
@@ -66,9 +61,25 @@ class PacienteDB():
 
     def obter_dados_paciente(self, prontuario: int):
         self.cursor.execute(f'''
-          SELECT * FROM DADOS_PACIENTE WHERE PRONTUARIO == {prontuario} LIMIT 1
-          ''')
-
+          SELECT  PRONTUARIO, 
+                  IDADE,
+                  HISTORICO_FAMILIAR,
+                  NODULO_PALPAVEL,
+                  TAMANHO_NODULO,
+                  BIRADS_USG,
+                  BIRADS_MAMOGRAFIA                            
+             FROM 
+                  DADOS_PACIENTE 
+               WHERE 
+                  PRONTUARIO == {prontuario} 
+               LIMIT 1
+          ''') 
+        
         itens = self.cursor.fetchall()
 
         return DadosPaciente(itens[0][0], itens[0][1], itens[0][2], itens[0][3], itens[0][4], itens[0][5], itens[0][6])
+    
+    def limpar_tabela(self):
+        self.cursor.execute(f'''
+          DELETE FROM DADOS_PACIENTE
+          ''')
