@@ -17,6 +17,14 @@ def index_post():
     paciente = paciente_db.obter_dados_paciente(prontuario)
     return render_template("/dados_paciente/dados_paciente.html", paciente = paciente, BIRADS_USG = BIRADS_USG, BIRADS_MAMOGRAFIA = BIRADS_MAMOGRAFIA)
 
+@app.route("/partials/dados_paciente", methods=['GET'])
+def partial_dados_paciente():
+    prontuario = request.form['prontuario']
+    paciente_db = PacienteDB()
+    paciente = paciente_db.obter_dados_paciente(prontuario)
+    return render_template("/partials/dados_paciente/dados_paciente.html", paciente = paciente, BIRADS_USG = BIRADS_USG, BIRADS_MAMOGRAFIA = BIRADS_MAMOGRAFIA)
+
+
 @app.route("/dados_paciente", methods=['GET'])
 def dados_paciente():
     return render_template("/dados_paciente/dados_paciente.html", BIRADS_USG = BIRADS_USG, BIRADS_MAMOGRAFIA = BIRADS_MAMOGRAFIA)

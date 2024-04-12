@@ -1,0 +1,72 @@
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+      <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="" value="{{paciente.prontuario}}" hidden required="">
+      <label for="prontuario">Prontuário: </label>
+      <label class="bold"> {{paciente.prontuario}} </label>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="idade">Idade: </label>
+      <label class="bold"> {{paciente.idade}} </label> 
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="historico-familiar">Histórico familiar: </label>
+      {% if paciente.historico_familiar == 1 %}
+        <label class="bold">Sim</label>
+      {% endif %}
+
+      {% if paciente.historico_familiar == 0 %}
+        <label class="bold">Não</label>
+      {% endif %} 
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="nodulo-palpavel">Nódulo palpável: </label>
+
+      {% if paciente.nodulo_palpavel == 1 %}
+        <label class="bold">Sim</label>
+      {% endif %}
+
+      {% if paciente.nodulo_palpavel == 0 %}
+        <label class="bold">Não</label>
+      {% endif %}  
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="tamanho-nodulo">Tamanho do nódulo (mm): </label>
+      <label class="bold"> {{paciente.tamanho_nodulo}} </label> 
+    </div> 
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="bi-rads-usg">BI-RADS USG: </label>
+        {% for row in BIRADS_USG %}
+          {% if paciente.birads_usg == (row.VALOR | int) %}
+            <label class="bold">{{row.NOME}}</label>
+          {% endif %}
+        {% endfor %} 
+    </div> 
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <label for="bi-rads-mamografia">BI-RADS Mamografia: </label>
+      {% for row in BIRADS_MAMOGRAFIA %}
+        {% if paciente.birads_mamografia == (row.VALOR | int)  %}
+          <label class="bold">{{row.NOME}}</label>
+        {% endif %}
+      {% endfor %}  
+    </div> 
+  </div>

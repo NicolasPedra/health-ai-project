@@ -13,10 +13,14 @@
   <label id="dados_paciente_db" hidden>{{paciente.toJSON()}}</label>
   <label id="predicao_paciente_db" hidden>{{predicao.toJSON()}}</label>
   <div class="container">
-    <div class="row"> 
-      {% include "dados_paciente/dados_paciente.html" %}
+    <div class="py-5 text-center">
+      <h2>Resultado</h2>
     </div>
-    <div class="row mt-5">
+
+    <div class="row"> 
+      {% include "_partials/dados_paciente/dados_paciente.html" %}
+    </div>
+    <div class="row mt-3">
       {% if predicao.predicao == 0 %}
         <label for="predicao" class="font-weight-bold"><b>Predição: Tumor Benigno</b></label>
       {% endif %}
@@ -25,7 +29,17 @@
         <label for="predicao" class="font-weight-bold"><b>Predição: Tumor Maligno</b></label>
       {% endif %}
     </div>
+
+    <div class="row mt-5">
+      <div class="inline">
+        <button class="btn btn-secondary btn-lg" type="button" onclick="window.location.href ='/'">Voltar</button>
+      </div> 
+    </div>
   </div>
+
+  <py-config>
+    packages = ["matplotlib"]
+  </py-config>
 
   <script type="py" src="./../../static/script/resultado_predicao/resultado_predicao.py"></script>
 </body>
