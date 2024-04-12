@@ -35,23 +35,20 @@ def intNull(valor):
 #=============== FIM - MÓDULOS =============#
 
 def submit(event):
-    # form = document.getElementById("form")
+    form = document.getElementById("form")
 
-    # if (form.checkValidity() == False):
-    #     event.preventDefault()
-    #     event.stopPropagation()
+    if (form.checkValidity() == False):
+        event.preventDefault()
+        event.stopPropagation()
 
-    # form.classList.add('was-validated')
+    form.classList.add('was-validated')
 
-    # dados_paciente_tela = obterDadosPacienteTela()
-    # dados_paciente_db = json.loads(document.getElementById("dados_paciente_db").textContent)
+    dados_paciente_tela = obterDadosPacienteTela()
+    dados_paciente_db = json.loads(document.getElementById("dados_paciente_db").textContent)
 
-    # alterado = verificarAlteracaoPaciente(dados_paciente_db, dados_paciente_tela)
-    # print(dados_paciente_tela.__array__())
+    alterado = verificarAlteracaoPaciente(dados_paciente_db, dados_paciente_tela)
+    print(dados_paciente_tela.__array__())
     navegar('form', '/dados_paciente', 'POST')
-
-def voltar(event):
-    navegar('form', '/', 'GET')
 
 def obterDadosPacienteTela() -> DadosPaciente:
     idade = int(document.getElementById("idade").value)

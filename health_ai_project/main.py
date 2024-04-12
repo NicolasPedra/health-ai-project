@@ -2,7 +2,9 @@ import json
 from flask import Flask, render_template, request
 from static.constantes.select_option.SELECT_OPTION import BIRADS_USG, BIRADS_MAMOGRAFIA
 from data_base.paciente.paciente_db import PacienteDB
+from data_base.paciente.paciente_ob import DadosPaciente
 from data_base.predicao.predicao_db import PredicaoDB
+
 
 app = Flask(__name__,  template_folder="templates")
 
@@ -32,10 +34,12 @@ def dados_paciente():
 @app.route("/dados_paciente", methods=['POST'])
 def dados_paciente_post():
     prontuario = request.form['prontuario']
-    paciente_db = PacienteDB()
     predicao_db = PredicaoDB()
     predicao = predicao_db.obter_predicao_paciente(prontuario)
-    paciente = paciente_db.obter_dados_paciente(prontuario)
+    paciente = DadosPaciente(request.form['prontuario'], request.form['idade'],request.form['historico'],
+                             request.form['nodulo-palpavel'], request.form['tamanho-nodulo'], request.form['bi-rads-usg'],
+                             request.form['bi-rads-mamografia'])
+    
     return render_template("/resultado_predicao/resultado_predicao.html", paciente = paciente, predicao = predicao, BIRADS_USG = BIRADS_USG, BIRADS_MAMOGRAFIA = BIRADS_MAMOGRAFIA)
  
 app.run(debug=True)

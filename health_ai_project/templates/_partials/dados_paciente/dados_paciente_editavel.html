@@ -1,0 +1,118 @@
+<div class="row"> 
+  <div class="order-md-1">
+    <form id="form" class="needs-validation" novalidate="" method="post">
+
+    <div class="row">
+
+        <div class="col-md-3 mb-3">
+          <input type="text" class="form-control" id="prontuario" name="prontuario" placeholder="" value="{{paciente.prontuario}}" hidden required="">
+          <label for="prontuario">Prontuário</label>
+          <label> {{paciente.prontuario}} </label>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+          <label for="idade">Idade</label>
+          <input type="number" class="form-control" id="idade" name="idade" placeholder="" value="{{paciente.idade}}" required="">
+          <div class="invalid-feedback">
+            Campo obrigatório.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="d-block my-3">
+          <label for="firstName">Histórico familiar</label>
+          
+          <div class="custom-control custom-radio">
+            <input id="historico-sim" name="historico" type="radio" class="custom-control-input" required="" value="1" selecionado="{{paciente.historico_familiar}}">
+            <label class="custom-control-label" for="historico-sim">Sim</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="historico-nao" name="historico" type="radio" class="custom-control-input" required="" value="0" selecionado="{{paciente.historico_familiar}}">
+            <label class="custom-control-label" for="historico-nao">Não</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="d-block my-3">
+          <label for="firstName">Nódulo palpável</label>
+          <div class="custom-control custom-radio">
+            <input id="nodulo-palpavel-sim" name="nodulo-palpavel" type="radio" class="custom-control-input" required="" value="1" selecionado="{{paciente.nodulo_palpavel}}">
+            <label class="custom-control-label" for="nodulo-palpavel-sim">Sim</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="nodulo-palpavel-nao" name="nodulo-palpavel" type="radio" class="custom-control-input" required="" value="0" selecionado="{{paciente.nodulo_palpavel}}">
+            <label class="custom-control-label" for="nodulo-palpavel-nao">Não</label>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+          <label for="firstName">Tamanho do nódulo (mm)</label>
+          <input type="number" class="form-control" id="tamanho-nodulo" name="tamanho-nodulo" placeholder=""  value="{{paciente.tamanho_nodulo}}" required="">
+          <div class="invalid-feedback">
+            Campo obrigatório.
+          </div>
+        </div> 
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+
+          <label for="bi-rads-usg">BI-RADS USG</label>
+          <select class="form-select d-block w-100" id="bi-rads-usg" name="bi-rads-usg" selecionado="{{paciente.birads_usg}}">
+            <option value="{{null}}">Selecione</option>
+            {% for row in BIRADS_USG %}
+            <option value="{{row.VALOR}}"> {{row.NOME}} </option>
+            {% endfor %} 
+          </select>
+          <div class="invalid-feedback">
+            Campo obrigatório.
+          </div>
+        </div> 
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+
+          <label for="bi-rads-mamografia">BI-RADS Mamografia</label>
+          <select class="form-select d-block w-100" id="bi-rads-mamografia" name="bi-rads-mamografia" selecionado="{{paciente.birads_mamografia}}">
+            <option value="{{null}}">Selecione</option>
+            {% for row in BIRADS_MAMOGRAFIA %}
+            <option value="{{row.VALOR}}"> {{row.NOME}} </option>
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback">
+            Campo obrigatório.
+          </div>
+        </div> 
+        
+      </div>
+    </form>
+  </div>
+</div>
+
+  <script>
+      window.onload = function(e){ 
+           setarRadio("historico")
+           setarRadio("nodulo-palpavel")
+           setarSelectOption("bi-rads-usg")
+           setarSelectOption("bi-rads-mamografia")
+      }
+  </script>
