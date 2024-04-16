@@ -19,6 +19,7 @@ def consultar_predicao():
     exibirGrafico(valores_negativos, valores_positivos)
 
 def exibirGrafico(valores_negativos: list[int], valores_positivos: list[int]): 
+    print('inicio')
     categorias = ['Idade', 'Histórico familiar', 'Nódulo Palpável', 'Tamanho do nódulo', 'BI-RADS USG', 'BI-RADS Mamografia']
     font_color = '#525252'
     hfont = {'fontname':'DejaVu Sans'}
@@ -52,6 +53,7 @@ def exibirGrafico(valores_negativos: list[int], valores_positivos: list[int]):
         
     plt.subplots_adjust(wspace=0, top=0.85, bottom=0.1, left=0.18, right=0.95)
     plt.show()
+    print('fim')
 
 def obterValoresPositivos(valores: list[int]):
     valores_positivos = []

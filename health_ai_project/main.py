@@ -36,9 +36,8 @@ def dados_paciente_post():
     prontuario = request.form['prontuario']
     predicao_db = PredicaoDB()
     predicao = predicao_db.obter_predicao_paciente(prontuario)
-    paciente = DadosPaciente(request.form['prontuario'], request.form['idade'],request.form['historico'],
-                             request.form['nodulo-palpavel'], request.form['tamanho-nodulo'], request.form['bi-rads-usg'],
-                             request.form['bi-rads-mamografia'])
+    paciente_db = PacienteDB()
+    paciente = paciente_db.obter_dados_paciente(prontuario)
     
     return render_template("/resultado_predicao/resultado_predicao.html", paciente = paciente, predicao = predicao, BIRADS_USG = BIRADS_USG, BIRADS_MAMOGRAFIA = BIRADS_MAMOGRAFIA)
  
